@@ -6,25 +6,22 @@ export default class Counter extends React.Component {
             count:0,
             colour:'black'
         } }
+        
     onClickButton=(event)=>{
-        if(event.target.value==='Increase') {
-            this.setState(
-                {
-               count:this.state.count+1,
-                colour:this.state.count>=0?'green':'red'
-                } )  }
-        else if(event.target.value==='Decrease'){
-            this.setState(
-             {
-                count:this.state.count-1,
-                colour:this.state.count<=0?'red':'green'
-            })}
-        else if(event.target.value==='Reset'){
+        if(event.target.value==='Reset'){
             this.setState(
             {
                 count:0,
                 colour:'black'
                 })}
+         else
+                {
+            this.setState(
+                {
+               count:(event.target.value==='Increase')?this.state.count+1:(event.target.value==='Decrease')?this.state.count-1:null,
+                colour:(event.target.value==='Increase')?(this.state.count>=0?'green':'red'):((event.target.value==='Decrease')?((this.state.count<=0)?'red':'green'):null)
+                } )  
+            }
     }
     render(){
         const {count,colour}=this.state;
